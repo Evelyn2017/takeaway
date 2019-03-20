@@ -22,8 +22,9 @@ public class ProductCategoryRepositoryTest {
 
     @Test
     public void findOneTest() {
-        ProductCategory productCategory = repository.findById(1).get();
-        System.out.println(productCategory.toString());
+        ProductCategory productCategory = repository.findById(1).orElse(null);
+
+        System.out.println(productCategory != null ? productCategory.toString() : null);
     }
 
     @Test
@@ -33,7 +34,6 @@ public class ProductCategoryRepositoryTest {
         ProductCategory result = repository.save(productCategory);
 
         Assert.assertNotNull(result);
-//        Assert.assertNotEquals(null, result);
     }
 
     @Test
