@@ -9,4 +9,4 @@ spring:
     
 server:
   servlet:
-    context-path: /Users/evelyn/ideaPrograms/logs
+    context-path: /takeaway
