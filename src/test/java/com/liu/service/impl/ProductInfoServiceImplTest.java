@@ -38,7 +38,7 @@ public class ProductInfoServiceImplTest {
 
     @Test
     public void findAll() {
-        PageRequest request = new PageRequest(0,2);
+        PageRequest request = PageRequest.of(0,2);
         Page<ProductInfo> productInfoPage = productInfoService.findAll(request);
 //        System.out.println(productInfoPage.getTotalElements());
         Assert.assertNotEquals(0, productInfoPage.getTotalElements());

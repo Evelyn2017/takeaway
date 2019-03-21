@@ -20,7 +20,7 @@ public class CategoryServiceImplTest {
     private CategoryServiceImpl categoryService;
 
     @Test
-    public void findOne() throws Exception{
+    public void findOne() {
         ProductCategory productCategory = categoryService.findOne(1);
         Assert.assertEquals(new Integer(1), productCategory.getCategoryId());
     }

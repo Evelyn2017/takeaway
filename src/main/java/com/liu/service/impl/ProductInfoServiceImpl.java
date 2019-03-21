@@ -1,7 +1,9 @@
 package com.liu.service.impl;
 
+import com.liu.dataobject.ProductCategory;
 import com.liu.dataobject.ProductInfo;
 import com.liu.enums.ProductStatusEnum;
+import com.liu.repository.ProductCategoryRepository;
 import com.liu.repository.ProductInfoRepository;
 import com.liu.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,12 @@ import java.util.List;
 
 @Service
 public class ProductInfoServiceImpl implements ProductInfoService {
-
-    @Autowired
     private ProductInfoRepository repository;
+    @Autowired
+    public void setRepository(ProductInfoRepository repository){
+        this.repository = repository;
+    }
+
 
     @Override
     public ProductInfo findOne(String productId) {

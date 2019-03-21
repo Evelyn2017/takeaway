@@ -2,6 +2,7 @@ package com.liu.service.impl;
 
 import com.liu.dataobject.ProductCategory;
 import com.liu.repository.ProductCategoryRepository;
+import com.liu.repository.ProductInfoRepository;
 import com.liu.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,12 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl  implements CategoryService {
 
-    @Autowired
     private ProductCategoryRepository repository;
+    @Autowired
+    public void setProductCategoryRepository (ProductCategoryRepository repository){
+        this.repository = repository;
+    }
+
     @Override
     public ProductCategory findOne(Integer categoryId) {
         return repository.findById(categoryId).orElse(null);
