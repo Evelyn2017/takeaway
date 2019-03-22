@@ -1,6 +1,7 @@
 package com.liu.service;
 
 import com.liu.dataobject.ProductInfo;
+import com.liu.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,5 +16,9 @@ public interface ProductInfoService {
 
     ProductInfo save(ProductInfo productInfo);
 
-    //加减库存
+    void increaseStock(List<CartDTO> cartDTOList);
+
+    void decreaseStock(List<CartDTO> cartDTOList);
+
+
 }
