@@ -7,6 +7,7 @@ import com.liu.enums.ResultEnum;
 import com.liu.exception.SellException;
 import com.liu.repository.ProductInfoRepository;
 import com.liu.service.ProductInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 public class ProductInfoServiceImpl implements ProductInfoService {
     private ProductInfoRepository repository;
 
@@ -53,7 +55,10 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
+
+        log.info("-----------------This function is used!!{}--------------------",cartDTOList.size());
         for (CartDTO cartDTO : cartDTOList) {
+            log.info("----------for start------------");
             ProductInfo productInfo = repository.findById(cartDTO.getProductId()).orElse(null);
             if (productInfo == null) {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
@@ -64,6 +69,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
                 throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
             }
 
+            log.info("---------result: {}----------",result);
             productInfo.setProductStock(result);
 
             repository.save(productInfo);

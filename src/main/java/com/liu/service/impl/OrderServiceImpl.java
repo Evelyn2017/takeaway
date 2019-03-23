@@ -13,6 +13,7 @@ import com.liu.repository.OrderDetailRepository;
 import com.liu.repository.OrderMainRepository;
 import com.liu.service.OrderService;
 import com.liu.service.ProductInfoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
     private ProductInfoService productInfoService;
@@ -85,10 +87,11 @@ public class OrderServiceImpl implements OrderService {
         orderMainRepository.save(orderMain);
 
         //扣库存
-        List<CartDTO> cartDTOList = new ArrayList<>();
-        orderDTO.getOrderDetailList().stream().map(
+//        List<CartDTO> cartDTOList = new ArrayList<>();
+        List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream().map(
                 e->new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
+        System.out.println(cartDTOList.toString());
         productInfoService.decreaseStock(cartDTOList);
 
         return orderDTO;

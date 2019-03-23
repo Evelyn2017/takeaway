@@ -25,7 +25,7 @@ public class OrderServiceImplTest {
     private final String BUYER_OPENID = "00101011";
 
     @Test
-    public void create() {
+    public void createTest() {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setBuyerName("OSHIKAMA");
         orderDTO.setBuyerAddress("TOKYO AKIHARA");
@@ -35,7 +35,7 @@ public class OrderServiceImplTest {
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
         o1.setProductId("139");
-        o1.setProductQuantity(1);
+        o1.setProductQuantity(3);
 
         orderDetailList.add(o1);
 
