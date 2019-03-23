@@ -1,6 +1,7 @@
 package com.liu.service.impl;
 
 import com.liu.dataobject.ProductInfo;
+import com.liu.dto.CartDTO;
 import com.liu.enums.ProductStatusEnum;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -23,6 +25,13 @@ public class ProductInfoServiceImplTest {
     @Autowired
     private ProductInfoServiceImpl productInfoService;
 
+    private List<CartDTO> cartDTOList = new ArrayList<>();
+
+    public void setCartDTOList(List<CartDTO> cartDTOList) {
+
+        CartDTO cartDTO = new CartDTO("139", 1);
+        this.cartDTOList.add(cartDTO);
+    }
 
     @Test
     public void findOne() {
@@ -58,5 +67,10 @@ public class ProductInfoServiceImplTest {
 
         ProductInfo productInfo1 = productInfoService.save(productInfo);
         Assert.assertNotNull(productInfo1);
+    }
+
+    @Test
+    public void decreaseStockTest(List<CartDTO> cartDTOList) {
+
     }
 }

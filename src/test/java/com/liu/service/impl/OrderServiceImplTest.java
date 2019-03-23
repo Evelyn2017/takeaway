@@ -22,20 +22,20 @@ public class OrderServiceImplTest {
 
     @Autowired
     private OrderServiceImpl orderService;
-    private final String BUYER_OPENID = "10110011";
+    private final String BUYER_OPENID = "00101011";
 
     @Test
     public void create() {
         OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setBuyerName("Jinx");
-        orderDTO.setBuyerAddress("some place");
-        orderDTO.setBuyerPhone("guess what");
+        orderDTO.setBuyerName("OSHIKAMA");
+        orderDTO.setBuyerAddress("TOKYO AKIHARA");
+        orderDTO.setBuyerPhone("32120182");
         orderDTO.setBuyerOpenId(BUYER_OPENID);
 
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
-        o1.setProductId("12222321");
-        o1.setProductQuantity(3);
+        o1.setProductId("139");
+        o1.setProductQuantity(1);
 
         orderDetailList.add(o1);
 
