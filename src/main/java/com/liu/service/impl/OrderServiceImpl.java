@@ -23,11 +23,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import utils.KeyUtil;
+import com.liu.utils.KeyUtil;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,8 +81,8 @@ public class OrderServiceImpl implements OrderService {
 
         //写入order_main
         OrderMain orderMain = new OrderMain();
-        BeanUtils.copyProperties(orderDTO, orderMain);
         orderMain.setOrderId(orderId);
+        BeanUtils.copyProperties(orderDTO, orderMain);
         orderMain.setOrderAmount(orderAmount);
         orderMain.setOrderStatus(OrderStatusEnum.NEW.getCode());
         orderMain.setPayStatus(PayStatusEnum.WAIT.getCode());

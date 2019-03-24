@@ -1,0 +1,72 @@
+GET http://localhost:8080/takeaway/buyer/order/create
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-24T044801.404.html
+
+###
+
+GET http://localhost:8080/takeaway/buyer/order/create
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-24T044714.404.html
+
+###
+
+GET http://localhost:8080/takeaway/buyer/product/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023705.200.json
+
+###
+
+GET http://localhost:8080/takeaway/buyer/product/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023637.200.json
+
+###
+
+GET http://localhost:8080/takeaway/buyer/product/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023615.200.json
+
+###
+
+GET http://localhost:8080/takeaway/buyer/product/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023612.200.json
+
+###
+
+GET http://localhost:8080/takeaway/buyer/product/list
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023600.200.json
+
+###
+
+GET http://localhost:8080/takeaway/
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023548.404.json
+
+###
+
+GET http://localhost:8080/takeaway/
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-03-21T023530.404.json
+
+###
+

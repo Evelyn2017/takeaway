@@ -1,4 +1,4 @@
-package utils;
+package com.liu.utils;
 
 import java.util.Random;
 
