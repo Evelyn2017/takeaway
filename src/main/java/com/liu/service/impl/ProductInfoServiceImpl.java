@@ -49,6 +49,16 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     @Override
     public void increaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDto : cartDTOList) {
+            ProductInfo info = repository.findById(cartDto.getProductId()).orElse(null);
+            //商品为空抛出异常
+            if(info == null){
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            int result = info.getProductStock() + cartDto.getProductQuantity();
+            info.setProductStock(result);
+            save(info);
+        }
 
     }
 
@@ -56,9 +66,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Transactional
     public void decreaseStock(List<CartDTO> cartDTOList) {
 
-        log.info("-----------------This function is used!!{}--------------------",cartDTOList.size());
         for (CartDTO cartDTO : cartDTOList) {
-            log.info("----------for start------------");
             ProductInfo productInfo = repository.findById(cartDTO.getProductId()).orElse(null);
             if (productInfo == null) {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
