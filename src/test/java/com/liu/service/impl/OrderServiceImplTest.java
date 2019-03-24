@@ -3,6 +3,7 @@ package com.liu.service.impl;
 import com.liu.dataobject.OrderDetail;
 import com.liu.dto.OrderDTO;
 import com.liu.enums.OrderStatusEnum;
+import com.liu.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.criterion.Order;
 import org.junit.Assert;
@@ -72,9 +73,15 @@ public class OrderServiceImplTest {
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne("1553335518703399363");
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISH.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void paid() {
+        OrderDTO orderDTO = orderService.findOne("1553336482407945860");
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 }
