@@ -7,6 +7,7 @@ import com.liu.dto.OrderDTO;
 import com.liu.enums.ResultEnum;
 import com.liu.exception.SellException;
 import com.liu.form.OrderForm;
+import com.liu.service.BuyerService;
 import com.liu.service.OrderService;
 import com.liu.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -32,16 +33,23 @@ public class BuyerOrderController {
 
 
     private OrderService orderService;
+    private BuyerService buyerService;
+
     @Autowired
-    public void setOrderService(OrderService orderService){
+    public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
+    }
+
+    @Autowired
+    public void setBuyerService(BuyerService buyerService) {
+        this.buyerService = buyerService;
     }
 
     //创建订单
     @PostMapping("/create")
-    public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm, BindingResult bindingResult){
+    public ResultVO<Map<String, String>> create(@Valid OrderForm orderForm, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            log.error("【创建订单】参数不正确,orderFrom={}",orderForm);
+            log.error("【创建订单】参数不正确,orderFrom={}", orderForm);
             throw new SellException(ResultEnum.PARAM_ERROR.getCode(),
                     bindingResult.getFieldError().getDefaultMessage());
         }
@@ -50,7 +58,7 @@ public class BuyerOrderController {
             log.error("【创建订单】购物车不能为空");
             throw new SellException(ResultEnum.CART_EMPTY);
         }
-        OrderDTO createResult =  orderService.create(orderDTO);
+        OrderDTO createResult = orderService.create(orderDTO);
         Map<String, String> map = new HashMap<>();
         map.put("orderId", createResult.getOrderId());
 
@@ -61,7 +69,7 @@ public class BuyerOrderController {
     @GetMapping("/list")
     public ResultVO<List<OrderDTO>> list(@RequestParam("openid") String openid,
                                          @RequestParam(value = "page", defaultValue = "0") Integer page,
-                                         @RequestParam(value = "size",defaultValue = "10") Integer size) {
+                                         @RequestParam(value = "size", defaultValue = "10") Integer size) {
         if (StringUtils.isEmpty(openid)) {
             log.error("【查询订单列表】openid为空");
             throw new SellException(ResultEnum.PARAM_ERROR);
@@ -77,10 +85,9 @@ public class BuyerOrderController {
     //订单详情
     @GetMapping("/detail")
     public ResultVO<OrderDTO> detail(@RequestParam("openid") String openid,
-                                     @RequestParam("orderId") String orderId){
-        //TODO 安全验证
-        OrderDTO order = orderService.findOne(orderId);
-        return ResultVOUtil.success(order);
+                                     @RequestParam("orderId") String orderId) {
+        OrderDTO orderDTO = buyerService.findOrderOne(openid, orderId);
+        return ResultVOUtil.success(orderDTO);
     }
 
     //取消订单
@@ -88,9 +95,7 @@ public class BuyerOrderController {
     public ResultVO cancel(@RequestParam("openid") String openid,
                            @RequestParam("orderId") String orderId) {
 
-        //TODO 安全验证
-        OrderDTO orderDTO = orderService.findOne(orderId);
-        orderService.cancel(orderDTO);
+        buyerService.cancelOrder(openid, orderId);
         return ResultVOUtil.success();
     }
 }
