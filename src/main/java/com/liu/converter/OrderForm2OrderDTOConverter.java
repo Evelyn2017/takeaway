@@ -19,14 +19,14 @@ public class OrderForm2OrderDTOConverter {
         OrderDTO orderDTO = new OrderDTO();
 
         orderDTO.setBuyerName(orderForm.getName());
-        orderForm.setPhone(orderForm.getPhone());
+        orderDTO.setBuyerPhone(orderForm.getPhone());
         orderDTO.setBuyerAddress(orderForm.getAddress());
         orderDTO.setBuyerOpenId(orderForm.getOpenId());
 
-        List<OrderDetail> orderDetailList = new ArrayList<>();
+        List<OrderDetail> orderDetailList;
 
         try {
-            gson.fromJson(orderForm.getItems(), new TypeToken<List<OrderDetail>>(){}.getType());
+            orderDetailList = gson.fromJson(orderForm.getItems(), new TypeToken<List<OrderDetail>>(){}.getType());
         } catch(Exception e) {
             log.error("【转换对象】错误,string={}",orderForm.getItems());
             throw new SellException(ResultEnum.PARAM_ERROR);

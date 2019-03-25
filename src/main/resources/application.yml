@@ -6,7 +6,9 @@ spring:
     url: jdbc:mysql://localhost/WeChatOrder?charsetEncoding=utf-8?useSSL=false
   jpa:
     show-sql: true
-    
+  jackson:
+    default-property-inclusion: non_null
+
 server:
   servlet:
     context-path: /takeaway

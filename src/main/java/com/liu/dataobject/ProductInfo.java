@@ -28,4 +28,6 @@ public class ProductInfo {
 
     private Integer categoryType;
 
+    public ProductInfo() {
+    }
 }

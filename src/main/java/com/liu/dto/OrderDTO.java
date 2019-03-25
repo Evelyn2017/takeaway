@@ -1,16 +1,18 @@
 package com.liu.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.liu.dataobject.OrderDetail;
-import com.liu.enums.OrderStatusEnum;
-import com.liu.enums.PayStatusEnum;
+import com.liu.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     private String orderId;
@@ -31,4 +33,10 @@ public class OrderDTO {
     private Integer payStatus;
 
     private List<OrderDetail> orderDetailList;
+
+    @JsonSerialize(using= Date2LongSerializer.class)
+    private Date createTime;
+
+    @JsonSerialize(using= Date2LongSerializer.class)
+    private Date updateTime;
 }

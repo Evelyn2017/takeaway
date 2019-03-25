@@ -6,10 +6,7 @@ import com.liu.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -37,9 +34,10 @@ public class OrderMain {
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
 
-//    private Date createTime;
-//
-//    private Date updateTime;
+    private Date createTime;
 
+    private Date updateTime;
 
+    public OrderMain() {
+    }
 }

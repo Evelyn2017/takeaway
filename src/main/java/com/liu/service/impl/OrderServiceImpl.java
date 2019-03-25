@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
 
         //写入order_main
         OrderMain orderMain = new OrderMain();
-        orderMain.setOrderId(orderId);
+        orderDTO.setOrderId(orderId);
         BeanUtils.copyProperties(orderDTO, orderMain);
         orderMain.setOrderAmount(orderAmount);
         orderMain.setOrderStatus(OrderStatusEnum.NEW.getCode());

@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Data
@@ -23,4 +24,5 @@ public class OrderDetail {
     private BigDecimal productPrice;
 
     private String productIcon;
+
 }
