@@ -5,7 +5,6 @@ import com.liu.dto.OrderDTO;
 import com.liu.enums.OrderStatusEnum;
 import com.liu.enums.PayStatusEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.criterion.Order;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 @RunWith(SpringRunner.class)
@@ -33,7 +31,7 @@ public class OrderServiceImplTest {
     @Test
     public void createTest() {
         OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setBuyerName("OSHIKAMA");
+        orderDTO.setBuyerName("ttvs");
         orderDTO.setBuyerAddress("TOKYO AKIHARA");
         orderDTO.setBuyerPhone("32120182");
         orderDTO.setBuyerOpenId(BUYER_OPENID);
@@ -59,7 +57,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void findList() {
-        PageRequest request = PageRequest.of(0,2);
+        PageRequest request = PageRequest.of(0, 2);
         Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
         Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }
@@ -83,5 +81,12 @@ public class OrderServiceImplTest {
         OrderDTO orderDTO = orderService.findOne("1553336482407945860");
         OrderDTO result = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+    }
+
+    @Test
+    public void listTest() {
+        PageRequest request = PageRequest.of(0, 2);
+        Page<OrderDTO> order = orderService.findList(request);
+        Assert.assertNotEquals(0, order.getTotalElements());
     }
 }

@@ -34,9 +34,9 @@ public class OrderMain {
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
 
-    private Date createTime;
-
-    private Date updateTime;
+//    private Date createTime;
+//
+//    private Date updateTime;
 
     public OrderMain() {
     }
