@@ -8,7 +8,17 @@ spring:
     show-sql: true
   jackson:
     default-property-inclusion: non_null
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    enabled: true
+    mode: HTML5
+    suffix: .html
 
 server:
   servlet:
     context-path: /takeaway
+
+
+
+
